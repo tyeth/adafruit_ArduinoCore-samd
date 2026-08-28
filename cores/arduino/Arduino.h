@@ -151,7 +151,11 @@ void loop( void ) ;
 // USB
 #ifdef USE_TINYUSB
   // Needed for declaring Serial
-  #include "Adafruit_USBD_CDC.h"
+  #if defined(PLATFORMIO) || defined(__PLATFORMIO__)
+    #include "arduino/Adafruit_USBD_CDC.h"
+  #else
+    #include "Adafruit_USBD_CDC.h"
+  #endif
 #else
   #include "USB/USBDesc.h"
   #include "USB/USBCore.h"
